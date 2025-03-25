@@ -4,16 +4,25 @@ import bodyParser from "body-parser";
 
 const app = express();
 const port = 3000;
-const API_URL = "https://date.nager.at/api/v3/PublicHolidays/2025/"
+const API_URL = "https://date.nager.at/api/v3/NextPublicHolidays/"
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+
 
 app.get("/", async(req, res) =>{
     res.render("index.ejs")
 });
 
-app.get("/vacation_holidays", async (req, res) => {
+app.post("/submit", async (req, res) => {
+  const country = req.body.country
+  const startDate = req.body.start
+  const endDate = req.body.end
     try {
-      const response = await axios.get(API_URL + "PL");
+      const response = await axios.get(API_URL + country);
       const result = response.data;
+      const filtered = filterByDateRange(result, "date", startDate, endDate);
+      console.log(filtered)
       res.render("index.ejs", {content: result});
     } catch (error) {
       console.error("Failed to make request:", error.message);
@@ -28,3 +37,13 @@ app.get("/vacation_holidays", async (req, res) => {
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
   });
+
+function filterByDateRange(jsonArray, dateField, startDate, endDate) {
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+  
+  return jsonArray.filter(item => {
+      const itemDate = new Date(item[dateField]);
+      return itemDate >= start && itemDate <= end;
+  });
+}
