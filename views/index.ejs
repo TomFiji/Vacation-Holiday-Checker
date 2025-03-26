@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/main.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,43 +16,37 @@
     <script>
         
     </script>
-    <h1>Are you going to encounter any local holidays on your vacation?</h1>
+    <h1>Holiday Finder</h1>
     
-    <div class="container">
-        <form action="/submit" method="POST" class="buttons">
-            <div class="row">
-                <div class="col-12 col-xl-6">
-                        <select id="countrySelect" name="country" style="width: 50%;">
-                            <option value="AR">Argentina</option>
-                            <option value="AU">Australia</option>
-                            <option value="BR">Brazil</option>
-                            <option value="BS">Bahamas</option>
-                            <option value="CN">China</option>
-                            <option value="DE">Germany</option>
-                            <option value="FR">France</option>
-                            <option value="IT">Italy</option>
-                            <option value="JP">Japan</option>
-                            <option value="MX">Mexico</option>
-                            <option value="ES">Spain</option>
-                            <option value="GB">United Kingdom</option>
-                            <option value="US">United States</option>
-                        </select>
-                        </div>
-                <div class="col-12 col-xl-6" id="dates">
-                    <div class="row">
-                        <label for="start_date">Start date:</label>
-                        <input type="date" id="start_date" name="start">
-                    </div>
-                    <div class="row">
-                        <label for="end_date">End date:</label>
-                        <input type="date" id="end_date" name="end">
-                    </div>
-                </div>
-                <button>Submit</button>
+    <div class="container">       
+        <div class="row">
+            <div class="col-12 input">
+                <form action="/submit" method="POST" class="buttons">
+                    <select id="countrySelect" name="country" style="width: 50%;">
+                        <option value="AR">Argentina</option>
+                        <option value="AU">Australia</option>
+                        <option value="BR">Brazil</option>
+                        <option value="BS">Bahamas</option>
+                        <option value="CN">China</option>
+                        <option value="DE">Germany</option>
+                        <option value="FR">France</option>
+                        <option value="IT">Italy</option>
+                        <option value="JP">Japan</option>
+                        <option value="MX">Mexico</option>
+                        <option value="ES">Spain</option>
+                        <option value="GB">United Kingdom</option>
+                        <option value="US">United States</option>
+                    </select>
+                    <label for="start_date">Start date:</label>
+                    <input type="date" id="start_date" name="start">
+                    <label for="end_date">End date:</label>
+                    <input type="date" id="end_date" name="end">
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                </form>    
             </div>
-        </form>
+        </div>
     </div>  
-    <div class="container">
+    <div class="container holidays">
         <% if (locals.content) {%>
             <% for (let i=0; i<content.length; i++) {%>
                 <div class="row">

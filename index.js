@@ -7,6 +7,7 @@ const port = 3000;
 const API_URL = "https://date.nager.at/api/v3/NextPublicHolidays/"
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(express.static("public"));
 
 function dateToString(date){
   const new_date = new Date(date);
@@ -43,6 +44,7 @@ app.post("/submit", async (req, res) => {
       const response = await axios.get(API_URL + country);
       const result = response.data;
       const filtered = filterByDateRange(result, "date", startDate, endDate);
+      console.log(filtered)
       res.render("index.ejs", {content: filtered});
     } catch (error) {
       console.error("Failed to make request:", error.message);

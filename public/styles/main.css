@@ -2,14 +2,31 @@
 
 h1 {
     font-family: "Funnel Display", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 300;
-    font-style: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    margin: 0;
   }
 
-.container{
-    height: 200px;
+.btn-primary{
+    width:50%;
+}
+
+.input{
     display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 10px;
+}
+
+.holidays{
+    
 }
