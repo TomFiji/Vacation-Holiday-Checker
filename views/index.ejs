@@ -79,6 +79,30 @@
                 allowClear: true
             });
         });
+
+        const firstDateInput = document.getElementById('start_date');
+        const secondDateInput = document.getElementById('end_date');
+        
+        firstDateInput.addEventListener('change', function() {
+            if (this.value) {
+            secondDateInput.min = this.value;
+            
+            // Optional: Also set the value of the second date if it's before the first date
+            if (secondDateInput.value && secondDateInput.value < this.value) {
+                secondDateInput.value = this.value;
+            }
+            }
+        });
+        secondDateInput.addEventListener('focus', function() {
+            if (firstDateInput.value && (!secondDateInput.value || secondDateInput.value < firstDateInput.value)) {
+                secondDateInput.value = firstDateInput.value;
+                // Blur and re-focus to refresh the date picker
+                setTimeout(() => {
+                    secondDateInput.blur();
+                    secondDateInput.focus();
+                }, 10);
+            }
+        });
     </script>
 </body>
 </html>
