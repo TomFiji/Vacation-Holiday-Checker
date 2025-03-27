@@ -9,13 +9,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static("public"));
 
+//Returns the day before the actual holiday date
 function dateToString(date){
   const new_date = new Date(date);
 
   const formattedDate = new_date.toLocaleDateString('en-US', {
     month: 'long',
     day: 'numeric',
-    year: 'numeric'
+    year: 'numeric',
+    timeZone: 'UTC'
     });
   return formattedDate;    
 }

@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles/main.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/styles/main.css">
     <title>Holiday Finder</title>
 </head>
 <body>
@@ -18,11 +19,12 @@
     </script>
     <h1>Holiday Finder</h1>
     
-    <div class="container">       
+    <div class="container input">       
         <div class="row">
-            <div class="col-12 input">
+            <div class="col-12">
                 <form action="/submit" method="POST" class="buttons">
-                    <select id="countrySelect" name="country" style="width: 50%;">
+                    <select id="countrySelect" name="country" style="width: 100%;">
+                        <option value="" disabled selected>Select a country</option>  
                         <option value="AR">Argentina</option>
                         <option value="AU">Australia</option>
                         <option value="BR">Brazil</option>
@@ -50,13 +52,15 @@
         <% if (locals.content) {%>
             <% for (let i=0; i<content.length; i++) {%>
                 <div class="row">
-                    <div class="card" style="width: 50%">
-                        <div class="card-body">
-                        <h5 class="card-title"><%- content[i].localName %></h5>
-                        <h6 class="card-subtitle mb-2 text-body-secondary"><%- content[i].name %></h6>
-                        <p class="card-text">Date: <%- dateToString(content[i].date) %></script></p>
-                        </div>
-                    </div>  
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                            <h5 class="card-title"><%- content[i].localName %></h5>
+                            <h6 class="card-subtitle mb-2 text-body-secondary"><%- content[i].name %></h6>
+                            <p class="card-text">Date: <%- dateToString(content[i].date) %></script></p>
+                            </div>
+                        </div>  
+                    </div>    
                 </div>
              <% } %>       
              <% } %>  
